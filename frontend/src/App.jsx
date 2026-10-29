@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import './App.css'
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const fieldTips = {
   prompt: 'Describe what you want the AI to accomplish. Include the task and any important details.',
   role: 'Tell the AI who it should act as, such as an AI researcher, tutor, editor, or business analyst.',
@@ -63,7 +65,7 @@ function App() {
     setMessage('Enhancing your prompt...')
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/enhance', {
+      const response = await fetch(`${API_BASE_URL}/enhance`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -105,7 +107,7 @@ async function handleGenerateAnswer() {
   setMessage('Generating your answer...')
 
   try {
-    const response = await fetch('http://127.0.0.1:8000/answer', {
+    const response = await fetch(`${API_BASE_URL}/answer`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
